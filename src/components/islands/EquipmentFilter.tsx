@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { Equipo } from "../../data/equipos";
+import type { Equipo, Categoria } from "../../data/equipos";
 
 interface Props {
   equipos: Equipo[];
@@ -7,7 +7,7 @@ interface Props {
 }
 
 export default function EquipmentFilter({ equipos, categorias }: Props) {
-  const [categoria, setCategoria] = useState<string>("Todas");
+  const [categoria, setCategoria] = useState<Categoria | "Todas">("Todas");
   const [busqueda, setBusqueda] = useState("");
 
   const filtrados = equipos.filter((eq) => {
@@ -68,20 +68,32 @@ export default function EquipmentFilter({ equipos, categorias }: Props) {
           {filtrados.map((eq) => (
             <div
               key={eq.id}
-              class="rounded-2xl border border-surface-200 bg-white p-6 shadow-sm transition-all hover:shadow-md"
+              class="overflow-hidden rounded-2xl border border-surface-200 bg-white shadow-sm transition-all hover:shadow-md"
             >
-              <span class="mb-2 inline-block rounded-full bg-brand-100 px-3 py-0.5 text-xs font-medium text-brand-700">
-                {eq.categoria}
-              </span>
-              <h3 class="mt-2 text-lg font-bold text-surface-900">{eq.nombre}</h3>
-              <p class="mt-1 text-sm text-surface-500">{eq.marca}</p>
-              <p class="mt-2 text-sm text-surface-600">{eq.descripcion}</p>
-              <button
-                type="button"
-                class="mt-4 w-full rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
-              >
-                Cotizar
-              </button>
+              {eq.imagen && (
+                <div class="aspect-[4/3] overflow-hidden bg-surface-100">
+                  <img
+                    src={eq.imagen}
+                    alt={eq.nombre}
+                    class="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="p-6">
+                <span class="inline-block rounded-full bg-brand-100 px-3 py-0.5 text-xs font-medium text-brand-700">
+                  {eq.categoria}
+                </span>
+                <h3 class="mt-2 text-lg font-bold text-surface-900">{eq.nombre}</h3>
+                <p class="mt-1 text-sm text-surface-500">{eq.marca}</p>
+                <p class="mt-2 text-sm text-surface-600">{eq.descripcion}</p>
+                <button
+                  type="button"
+                  class="mt-4 w-full rounded-full bg-brand-600 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                >
+                  Cotizar
+                </button>
+              </div>
             </div>
           ))}
         </div>

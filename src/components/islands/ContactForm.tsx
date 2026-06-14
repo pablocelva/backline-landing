@@ -1,4 +1,5 @@
 import { type FormEvent, useState } from "react";
+import { FORMSPREE_FORM_ID } from "../../data/constants";
 
 interface FormData {
   nombre: string;
@@ -19,12 +20,30 @@ const initialForm: FormData = {
 export default function ContactForm() {
   const [data, setData] = useState<FormData>(initialForm);
   const [sent, setSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    console.log("Form data:", data);
-    setSent(true);
-    setData(initialForm);
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) throw new Error("Error al enviar el formulario");
+
+      setSent(true);
+      setData(initialForm);
+    } catch {
+      setError("Error al enviar. Intenta de nuevo o escríbenos directamente.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   if (sent) {
@@ -128,11 +147,19 @@ export default function ContactForm() {
         />
       </div>
 
+      {error && (
+        <p class="rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">
+          {error}{" "}
+          <a href="mailto:contacto@backlinepro.cl" class="underline">contacto@backlinepro.cl</a>.
+        </p>
+      )}
+
       <button
         type="submit"
-        class="w-full rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-800"
+        disabled={loading}
+        class="w-full rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-700 active:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        Enviar cotización
+        {loading ? "Enviando..." : "Enviar cotización"}
       </button>
     </form>
   );

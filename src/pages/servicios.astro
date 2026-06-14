@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Card from "../components/ui/Card.astro";
 import Button from "../components/ui/Button.astro";
+import FadeInView from "../components/islands/FadeInView.tsx";
 import { servicios } from "../data/servicios";
 ---
 
@@ -23,15 +24,18 @@ import { servicios } from "../data/servicios";
   <section class="bg-white py-24">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {servicios.map((s) => (
+        {servicios.map((s, i) => (
+          <FadeInView client:visible delay={i * 0.1}>
           <Card>
             <span class="text-3xl">{s.icono}</span>
             <h2 class="mt-4 text-xl font-bold text-surface-900">{s.titulo}</h2>
             <p class="mt-2 text-surface-600">{s.descripcion}</p>
           </Card>
+          </FadeInView>
         ))}
       </div>
 
+      <FadeInView client:visible delay={0.3}>
       <div class="mt-16 rounded-2xl bg-surface-50 p-8 text-center sm:p-12">
         <h2 class="text-2xl font-bold text-surface-900">
           ¿No encuentras lo que buscas?
@@ -43,6 +47,7 @@ import { servicios } from "../data/servicios";
           <Button href="/#contacto" size="lg">Habla con nosotros</Button>
         </div>
       </div>
+      </FadeInView>
     </div>
   </section>
 </BaseLayout>

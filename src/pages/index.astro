@@ -7,36 +7,65 @@ import FAQ from "../components/sections/FAQ.astro";
 import FinalCTA from "../components/sections/FinalCTA.astro";
 import Card from "../components/ui/Card.astro";
 import TestimonialCarousel from "../components/islands/TestimonialCarousel.tsx";
+import ImageGallery from "../components/islands/ImageGallery.tsx";
+import FadeInView from "../components/islands/FadeInView.tsx";
 import ContactForm from "../components/islands/ContactForm.tsx";
 import { servicios } from "../data/servicios";
 import { testimonios } from "../data/testimonios";
+import { faqs } from "../data/faqs";
+
+const galleryImages = [
+  { src: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80&fit=crop", alt: "Concierto en vivo", label: "Eventos musicales" },
+  { src: "https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=800&q=80&fit=crop", alt: "Consola de mezclas", label: "Equipo de sonido profesional" },
+  { src: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80&fit=crop", alt: "Monitores de estudio", label: "Estudio de grabación" },
+  { src: "https://images.unsplash.com/photo-1525201548942-d8732f6617a0?w=800&q=80&fit=crop", alt: "Guitarra eléctrica", label: "Instrumentos premium" },
+  { src: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80&fit=crop", alt: "Sonido en vivo", label: "Producción de eventos" },
+  { src: "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&q=80&fit=crop", alt: "Público en festival", label: "Festivales y conciertos" },
+];
 ---
 
 <BaseLayout
   title="Inicio"
   description="Arriendo de equipos de backline profesional para eventos musicales, corporativos y grabaciones. Marcas premium, mantenimiento impecable."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.pregunta,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.respuesta,
+      },
+    })),
+  })} />
+>
   <Hero />
   <BrandBar />
 
   <section class="bg-white py-24" id="servicios">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
-          Servicios destacados
-        </h2>
-        <p class="mt-4 text-lg text-surface-600">
-          Soluciones profesionales para cada tipo de evento
-        </p>
-      </div>
+      <FadeInView client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+            Servicios destacados
+          </h2>
+          <p class="mt-4 text-lg text-surface-600">
+            Soluciones profesionales para cada tipo de evento
+          </p>
+        </div>
+      </FadeInView>
 
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {servicios.filter((s) => s.destacado).map((s) => (
-          <Card>
-            <span class="text-3xl">{s.icono}</span>
-            <h3 class="mt-4 text-lg font-bold text-surface-900">{s.titulo}</h3>
-            <p class="mt-2 text-sm text-surface-600">{s.descripcion}</p>
-          </Card>
+        {servicios.filter((s) => s.destacado).map((s, i) => (
+          <FadeInView client:visible delay={i * 0.1}>
+            <Card>
+              <span class="text-3xl">{s.icono}</span>
+              <h3 class="mt-4 text-lg font-bold text-surface-900">{s.titulo}</h3>
+              <p class="mt-2 text-sm text-surface-600">{s.descripcion}</p>
+            </Card>
+          </FadeInView>
         ))}
       </div>
 
@@ -54,11 +83,13 @@ import { testimonios } from "../data/testimonios";
 
   <section class="bg-surface-50 py-24" id="testimonios">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
-          Lo que dicen nuestros clientes
-        </h2>
-      </div>
+      <FadeInView client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+            Lo que dicen nuestros clientes
+          </h2>
+        </div>
+      </FadeInView>
 
       <div class="mt-12">
         <TestimonialCarousel client:load testimonios={testimonios} />
@@ -66,23 +97,43 @@ import { testimonios } from "../data/testimonios";
     </div>
   </section>
 
-  <HowItWorks />
-  <FAQ />
-  <FinalCTA />
+  <section class="bg-white py-24" id="galeria">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <FadeInView client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+            Galería
+          </h2>
+          <p class="mt-4 text-lg text-surface-600">
+            Así vivimos la música junto a nuestros clientes
+          </p>
+        </div>
+      </FadeInView>
+      <div class="mt-12">
+        <ImageGallery client:visible images={galleryImages} />
+      </div>
+    </div>
+  </section>
+
+  <FadeInView client:visible><HowItWorks /></FadeInView>
+  <FadeInView client:visible><FAQ /></FadeInView>
+  <FadeInView client:visible><FinalCTA /></FadeInView>
 
   <section class="bg-white py-24" id="contacto">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
-          Solicita tu cotización
-        </h2>
-        <p class="mt-4 text-lg text-surface-600">
-          Cuéntanos sobre tu evento y te responderemos en menos de 2 horas
-        </p>
-      </div>
+      <FadeInView client:visible>
+        <div class="mx-auto max-w-2xl text-center">
+          <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+            Solicita tu cotización
+          </h2>
+          <p class="mt-4 text-lg text-surface-600">
+            Cuéntanos sobre tu evento y te responderemos en menos de 2 horas
+          </p>
+        </div>
+      </FadeInView>
 
       <div class="mx-auto mt-12 max-w-xl">
-        <ContactForm client:load />
+        <ContactForm client:visible />
       </div>
     </div>
   </section>

@@ -1,32 +1,83 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/ui/Button.astro";
+import FadeInView from "../components/islands/FadeInView.tsx";
 ---
 
 <BaseLayout
-  title="Inversiones — Backline Pro"
+  title="Inversiones"
   description="Oportunidad de inversión en el mercado de arriendo de backline profesional en Chile."
 >
   <section class="bg-gradient-to-br from-surface-950 via-surface-900 to-brand-950 py-32">
     <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
-        Inversiones
-      </h1>
-      <p class="mt-4 text-lg text-surface-300">
-        Únete al crecimiento del mercado de backline profesional en Chile
-      </p>
+      <FadeInView client:visible>
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          Inversiones
+        </h1>
+        <p class="mt-4 text-lg text-surface-300">
+          Únete al crecimiento del mercado de backline profesional en Chile
+        </p>
+      </FadeInView>
     </div>
   </section>
 
   <section class="bg-white py-24">
     <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
-      <p class="text-lg text-surface-600">
-        Contenido próximamente. Si recibiste este enlace directamente, contáctanos para más información sobre esta oportunidad de inversión.
-      </p>
+      <FadeInView client:visible>
+        <div class="prose prose-surface mx-auto max-w-none">
+          <h2 class="text-2xl font-bold text-surface-900">Una industria en crecimiento</h2>
+          <p class="mt-4 text-surface-600">
+            La escena musical chilena está en expansión. Festivales, conciertos, eventos corporativos y producciones de estudio requieren cada vez más equipamiento de backline profesional de alta calidad. Backline Pro nace para cubrir esta demanda con un inventario de primeras marcas, mantenimiento experto y un servicio centrado en el cliente.
+          </p>
 
-      <div class="mt-8">
-        <Button href="mailto:inversiones@backlinepro.cl">inversiones@backlinepro.cl</Button>
-      </div>
+          <h2 class="mt-12 text-2xl font-bold text-surface-900">Oportunidad de inversión</h2>
+          <p class="mt-4 text-surface-600">
+            Buscamos inversionistas interesados en formar parte de la expansión de Backline Pro. Los fondos se destinarán a:
+          </p>
+          <ul class="mt-4 list-disc space-y-2 pl-6 text-surface-600">
+            <li>Ampliación del inventario con nuevos equipos y marcas</li>
+            <li>Implementación de plataforma de reservas online</li>
+            <li>Expansión a regiones con alta demanda insatisfecha</li>
+            <li>Marketing digital y posicionamiento de marca</li>
+            <li>Contratación de personal técnico especializado</li>
+          </ul>
+
+          <h2 class="mt-12 text-2xl font-bold text-surface-900">¿Por qué invertir?</h2>
+          <div class="mt-6 grid gap-6 sm:grid-cols-2">
+            <div class="rounded-2xl border border-surface-200 bg-surface-50 p-6">
+              <p class="text-3xl font-black text-brand-600">+40%</p>
+              <p class="mt-2 text-sm font-medium text-surface-900">Crecimiento anual del mercado de eventos en Chile</p>
+            </div>
+            <div class="rounded-2xl border border-surface-200 bg-surface-50 p-6">
+              <p class="text-3xl font-black text-brand-600">95%</p>
+              <p class="mt-2 text-sm font-medium text-surface-900">Tasa de ocupación de equipos en temporada alta</p>
+            </div>
+            <div class="rounded-2xl border border-surface-200 bg-surface-50 p-6">
+              <p class="text-3xl font-black text-brand-600">+50</p>
+              <p class="mt-2 text-sm font-medium text-surface-900">Eventos realizados con más de 30 artistas nacionales</p>
+            </div>
+            <div class="rounded-2xl border border-surface-200 bg-surface-50 p-6">
+              <p class="text-3xl font-black text-brand-600">3x</p>
+              <p class="mt-2 text-sm font-medium text-surface-900">Retorno proyectado a 3 años</p>
+            </div>
+          </div>
+
+          <h2 class="mt-12 text-2xl font-bold text-surface-900">Contacto para inversionistas</h2>
+          <p class="mt-4 text-surface-600">
+            Si estás interesado en conocer más detalles sobre esta oportunidad, escríbenos y agendaremos una reunión para presentarte el plan de negocios completo.
+          </p>
+        </div>
+      </FadeInView>
+
+      <FadeInView client:load delay={0.2}>
+        <div class="mt-10 rounded-2xl bg-brand-50 p-8 text-center sm:p-12">
+          <h3 class="text-xl font-bold text-brand-900">Solicita información</h3>
+          <p class="mt-2 text-brand-700">Escríbenos para recibir el investment deck completo.</p>
+          <div class="mt-6">
+            <Button href="mailto:inversiones@backlinepro.cl" size="lg">inversiones@backlinepro.cl</Button>
+          </div>
+        </div>
+      </FadeInView>
     </div>
   </section>
 </BaseLayout>

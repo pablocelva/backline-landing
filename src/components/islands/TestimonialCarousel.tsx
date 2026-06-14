@@ -23,9 +23,18 @@ export default function TestimonialCarousel({ testimonios }: Props) {
         <p class="text-lg leading-relaxed italic text-surface-700">
           &ldquo;{t.texto}&rdquo;
         </p>
-        <div class="mt-6">
-          <p class="font-semibold text-surface-900">{t.nombre}</p>
-          <p class="text-sm text-surface-500">{t.rol}</p>
+        <div class="mt-6 flex flex-col items-center gap-3">
+          {t.imagen && (
+            <img
+              src={t.imagen}
+              alt={t.nombre}
+              class="size-14 rounded-full object-cover"
+            />
+          )}
+          <div>
+            <p class="font-semibold text-surface-900">{t.nombre}</p>
+            <p class="text-sm text-surface-500">{t.rol}</p>
+          </div>
         </div>
       </div>
 

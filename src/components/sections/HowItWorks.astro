@@ -1,5 +1,11 @@
 ---
-const pasos = [
+interface Paso {
+  numero: string;
+  titulo: string;
+  descripcion: string;
+}
+
+const pasos: Paso[] = [
   {
     numero: "01",
     titulo: "Elige tu equipamiento",

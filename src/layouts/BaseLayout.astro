@@ -1,7 +1,9 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import SEO from "../components/layout/SEO.astro";
 import Header from "../components/layout/Header.astro";
 import Footer from "../components/layout/Footer.astro";
+import { SITE, SOCIAL } from "../data/constants";
 import "../styles/globals.css";
 
 export interface Props {
@@ -15,9 +17,23 @@ const { title, description } = Astro.props;
 <html lang="es">
   <SEO title={title} description={description} />
 
+  <ViewTransitions />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+    email: SITE.email,
+    telephone: SITE.phone,
+    address: { "@type": "PostalAddress", addressCountry: "CL", addressLocality: "Santiago" },
+    sameAs: [SOCIAL.instagram, SOCIAL.facebook, SOCIAL.youtube],
+  })} />
+
   <body class="flex min-h-dvh flex-col">
     <Header />
-    <main class="flex-1">
+    <main class="flex-1" transition:animate="slide">
       <slot />
     </main>
     <Footer />

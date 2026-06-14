@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import EquipmentFilter from "../components/islands/EquipmentFilter.tsx";
+import FadeInView from "../components/islands/FadeInView.tsx";
 import { equipos, categorias } from "../data/equipos";
 ---
 
@@ -10,12 +11,14 @@ import { equipos, categorias } from "../data/equipos";
 >
   <section class="bg-gradient-to-br from-surface-950 via-surface-900 to-brand-950 py-24">
     <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-        Catálogo de Equipos
-      </h1>
-      <p class="mt-4 text-lg text-surface-300">
-        Explora nuestro inventario y encuentra el equipo perfecto para tu evento
-      </p>
+      <FadeInView client:visible>
+        <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+          Catálogo de Equipos
+        </h1>
+        <p class="mt-4 text-lg text-surface-300">
+          Explora nuestro inventario y encuentra el equipo perfecto para tu evento
+        </p>
+      </FadeInView>
     </div>
   </section>
 

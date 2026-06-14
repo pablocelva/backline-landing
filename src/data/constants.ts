@@ -1,3 +1,5 @@
+export const FORMSPREE_FORM_ID = "tu-form-id"; // Crea un form gratis en https://formspree.io y pega el ID aquí
+
 export const SITE = {
   name: "Backline Pro",
   tagline: "Equipamiento de audio profesional para tu evento",
