@@ -13,10 +13,6 @@ export const faqs: FAQ[] = [
     respuesta: "El arriendo estándar es por 24 horas. Para eventos de varios días o giras, ofrecemos tarifas especiales. Consulta por nuestras promociones semanales y mensuales.",
   },
   {
-    pregunta: "¿Hacen envíos a regiones?",
-    respuesta: "Sí, hacemos envíos a todo Chile. El costo de transporte varía según la distancia y el volumen del equipamiento. Contáctanos para obtener una cotización personalizada.",
-  },
-  {
     pregunta: "¿Los equipos están asegurados?",
     respuesta: "Sí, todos nuestros equipos cuentan con seguro de transporte y operación. Además, ofrecemos cobertura adicional por daños accidentales durante el evento.",
   },
