@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/sections/Hero.astro";
+import BrandBar from "../components/sections/BrandBar.astro";
+import HowItWorks from "../components/sections/HowItWorks.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import FinalCTA from "../components/sections/FinalCTA.astro";
+import Card from "../components/ui/Card.astro";
+import TestimonialCarousel from "../components/islands/TestimonialCarousel.tsx";
+import ContactForm from "../components/islands/ContactForm.tsx";
+import { servicios } from "../data/servicios";
+import { testimonios } from "../data/testimonios";
+---
+
+<BaseLayout
+  title="Inicio"
+  description="Arriendo de equipos de backline profesional para eventos musicales, corporativos y grabaciones. Marcas premium, mantenimiento impecable."
+>
+  <Hero />
+  <BrandBar />
+
+  <section class="bg-white py-24" id="servicios">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+          Servicios destacados
+        </h2>
+        <p class="mt-4 text-lg text-surface-600">
+          Soluciones profesionales para cada tipo de evento
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {servicios.filter((s) => s.destacado).map((s) => (
+          <Card>
+            <span class="text-3xl">{s.icono}</span>
+            <h3 class="mt-4 text-lg font-bold text-surface-900">{s.titulo}</h3>
+            <p class="mt-2 text-sm text-surface-600">{s.descripcion}</p>
+          </Card>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <a
+          href="/servicios"
+          class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 hover:text-brand-700"
+        >
+          Ver todos los servicios
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-surface-50 py-24" id="testimonios">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+          Lo que dicen nuestros clientes
+        </h2>
+      </div>
+
+      <div class="mt-12">
+        <TestimonialCarousel client:load testimonios={testimonios} />
+      </div>
+    </div>
+  </section>
+
+  <HowItWorks />
+  <FAQ />
+  <FinalCTA />
+
+  <section class="bg-white py-24" id="contacto">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+          Solicita tu cotización
+        </h2>
+        <p class="mt-4 text-lg text-surface-600">
+          Cuéntanos sobre tu evento y te responderemos en menos de 2 horas
+        </p>
+      </div>
+
+      <div class="mx-auto mt-12 max-w-xl">
+        <ContactForm client:load />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

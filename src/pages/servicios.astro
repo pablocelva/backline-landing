@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Card from "../components/ui/Card.astro";
+import Button from "../components/ui/Button.astro";
+import { servicios } from "../data/servicios";
+---
+
+<BaseLayout
+  title="Servicios"
+  description="Arriendo de backline para conciertos, eventos corporativos, grabaciones y más. Asesoría técnica, transporte y montaje incluidos."
+>
+  <section class="bg-gradient-to-br from-surface-950 via-surface-900 to-brand-950 py-24">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        Servicios
+      </h1>
+      <p class="mt-4 text-lg text-surface-300">
+        Todo lo que necesitas para que tu evento suene perfecto
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {servicios.map((s) => (
+          <Card>
+            <span class="text-3xl">{s.icono}</span>
+            <h2 class="mt-4 text-xl font-bold text-surface-900">{s.titulo}</h2>
+            <p class="mt-2 text-surface-600">{s.descripcion}</p>
+          </Card>
+        ))}
+      </div>
+
+      <div class="mt-16 rounded-2xl bg-surface-50 p-8 text-center sm:p-12">
+        <h2 class="text-2xl font-bold text-surface-900">
+          ¿No encuentras lo que buscas?
+        </h2>
+        <p class="mt-2 text-surface-600">
+          Contáctanos y armamos una solución a la medida de tu evento.
+        </p>
+        <div class="mt-6">
+          <Button href="/#contacto" size="lg">Habla con nosotros</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import EquipmentFilter from "../components/islands/EquipmentFilter.tsx";
+import { equipos, categorias } from "../data/equipos";
+---
+
+<BaseLayout
+  title="Catálogo"
+  description="Explora nuestro catálogo de equipos de backline profesional. Baterías, amplificadores, teclados, micrófonos y más."
+>
+  <section class="bg-gradient-to-br from-surface-950 via-surface-900 to-brand-950 py-24">
+    <div class="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+        Catálogo de Equipos
+      </h1>
+      <p class="mt-4 text-lg text-surface-300">
+        Explora nuestro inventario y encuentra el equipo perfecto para tu evento
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-white py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <EquipmentFilter client:load equipos={equipos} categorias={categorias} />
+    </div>
+  </section>
+</BaseLayout>

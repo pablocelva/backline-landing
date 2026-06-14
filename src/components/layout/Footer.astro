@@ -1,0 +1,68 @@
+---
+import { NAV_LINKS, SITE, SOCIAL } from "../../data/constants";
+---
+
+<footer class="bg-surface-900 text-surface-300">
+  <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div class="grid gap-8 md:grid-cols-3">
+      <div>
+        <h3 class="mb-4 text-lg font-bold text-white">{SITE.name}</h3>
+        <p class="text-sm leading-relaxed">{SITE.description}</p>
+      </div>
+
+      <div>
+        <h4 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Navegación</h4>
+        <ul class="space-y-2">
+          {NAV_LINKS.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-sm transition-colors hover:text-white"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Contacto</h4>
+        <ul class="space-y-2 text-sm">
+          <li>
+            <a href={`mailto:${SITE.email}`} class="hover:text-white">{SITE.email}</a>
+          </li>
+          <li>
+            <a href={`tel:${SITE.phone}`} class="hover:text-white">{SITE.phone}</a>
+          </li>
+          <li>{SITE.address}</li>
+        </ul>
+
+        <div class="mt-4 flex gap-4">
+          <a
+            href={SOCIAL.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-surface-400 transition-colors hover:text-white"
+            aria-label="Instagram"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          </a>
+          <a
+            href={SOCIAL.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-surface-400 transition-colors hover:text-white"
+            aria-label="Facebook"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-12 border-t border-surface-700 pt-6 text-center text-xs text-surface-500">
+      &copy; {new Date().getFullYear()} {SITE.name}. Todos los derechos reservados.
+    </div>
+  </div>
+</footer>

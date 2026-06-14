@@ -1,0 +1,57 @@
+---
+const faqs = [
+  {
+    pregunta: "¿Qué incluye el arriendo del equipo?",
+    respuesta: "Todos nuestros arriendos incluyen el equipo completo, cables de señal, y soporte técnico durante tu evento. El montaje y desmontaje también está incluido en la mayoría de los servicios.",
+  },
+  {
+    pregunta: "¿Cuánto tiempo dura el arriendo?",
+    respuesta: "El arriendo estándar es por 24 horas. Para eventos de varios días o giras, ofrecemos tarifas especiales. Consulta por nuestras promociones semanales y mensuales.",
+  },
+  {
+    pregunta: "¿Hacen envíos a regiones?",
+    respuesta: "Sí, hacemos envíos a todo Chile. El costo de transporte varía según la distancia y el volumen del equipamiento. Contáctanos para obtener una cotización personalizada.",
+  },
+  {
+    pregunta: "¿Los equipos están asegurados?",
+    respuesta: "Sí, todos nuestros equipos cuentan con seguro de transporte y operación. Además, ofrecemos cobertura adicional por daños accidentales durante el evento.",
+  },
+  {
+    pregunta: "¿Necesito dejar una garantía?",
+    respuesta: "Para clientes nuevos solicitamos una garantía reembolsable del 20% del valor del arriendo. Clientes frecuentes pueden acceder a condiciones preferenciales.",
+  },
+];
+---
+
+<section class="bg-white py-24">
+  <div class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+        Preguntas Frecuentes
+      </h2>
+    </div>
+
+    <div class="mt-12 space-y-4">
+      {faqs.map((faq) => (
+        <details class="group rounded-2xl border border-surface-200 transition-all open:border-brand-200 open:bg-brand-50/50">
+          <summary class="flex cursor-pointer items-center justify-between px-6 py-4 text-base font-semibold text-surface-900">
+            {faq.pregunta}
+            <svg
+              class="size-5 shrink-0 text-surface-400 transition-transform group-open:rotate-180"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-4 text-surface-600">
+            {faq.respuesta}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

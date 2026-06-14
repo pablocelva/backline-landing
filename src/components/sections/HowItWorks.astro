@@ -1,0 +1,42 @@
+---
+const pasos = [
+  {
+    numero: "01",
+    titulo: "Elige tu equipamiento",
+    descripcion: "Revisa nuestro catálogo online con equipos de primeras marcas, filtrados por categoría.",
+  },
+  {
+    numero: "02",
+    titulo: "Solicita una cotización",
+    descripcion: "Cuéntanos qué necesitas, las fechas y el lugar. Te responderemos en máximo 2 horas.",
+  },
+  {
+    numero: "03",
+    titulo: "Nosotros nos encargamos",
+    descripcion: "Llevamos los equipos, los instalamos y los configuramos. Tú solo disfruta del evento.",
+  },
+];
+---
+
+<section class="bg-surface-50 py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-surface-900 sm:text-4xl">
+        ¿Cómo funciona?
+      </h2>
+      <p class="mt-4 text-lg text-surface-600">
+        Arrendar equipos de backline nunca fue tan fácil
+      </p>
+    </div>
+
+    <div class="mt-16 grid gap-8 md:grid-cols-3">
+      {pasos.map((paso) => (
+        <div class="relative text-center">
+          <span class="text-5xl font-black text-brand-200">{paso.numero}</span>
+          <h3 class="mt-4 text-xl font-bold text-surface-900">{paso.titulo}</h3>
+          <p class="mt-2 text-surface-600">{paso.descripcion}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
